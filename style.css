@@ -1,0 +1,94 @@
+/* 画面全体を完全に暗い空間にする */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #050505; /* 漆黒よりもわずかに柔らかい闇 */
+    overflow: hidden;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 展示室全体 */
+.room {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 天井から降り注ぐ薄あかりの演出 */
+.spotlight-beam {
+    position: absolute;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+}
+
+/* 球体と影をまとめるコンテナ */
+.sphere-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 白い球体本体（CSSのグラデーションで立体感を表現） */
+.sphere {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #a8a8a8 45%, #333333 80%, #111111 100%);
+    box-shadow: 
+        0 0 40px rgba(255, 255, 255, 0.15), /* 球体自体の淡い発光 */
+        0 20px 30px rgba(0, 0, 0, 0.8);     /* 立体的な影 */
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+}
+
+/* マウスホバーしたときに、少しだけ球体が反応する遊び心 */
+.sphere:hover {
+    transform: scale(1.03);
+}
+
+/* 床に落ちる影 */
+.floor-shadow {
+    position: absolute;
+    bottom: -40px;
+    width: 120px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    filter: blur(8px);
+}
+
+/* キャプション（作品名） */
+.caption {
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    opacity: 0.6;
+    letter-spacing: 0.15em;
+    transition: opacity 0.4s ease;
+}
+
+.caption:hover {
+    opacity: 1;
+}
+
+.caption h2 {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0 0 5px 0;
+}
+
+.caption p {
+    color: #777;
+    font-size: 0.75rem;
+    margin: 0;
+}
